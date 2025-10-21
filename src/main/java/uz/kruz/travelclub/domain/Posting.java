@@ -21,18 +21,12 @@ public class Posting {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Title should not be blank!")
-    @Size(min = 3, max = 100, message = "The length of title must be between 3 and 100 characters!")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String title;
 
-    @NotBlank(message = "Writer's email should not be blank!")
-    @Email(message = "The format of email is wrong!")
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String writerEmail;
 
-    @NotBlank(message = "Posting contents should not be blank!")
-    @Size(min = 10, max = 2000, message = "The length of contents must be between 10 and 2000!")
     @Column(nullable = false, length = 2000)
     private String contents;
 
@@ -43,7 +37,6 @@ public class Posting {
     @Column(nullable = false)
     private int readCount = 0;
 
-    @NotNull(message = "Board should not be blank!")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id", nullable = false)
     private SocialBoard board;

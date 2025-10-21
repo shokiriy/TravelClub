@@ -1,8 +1,6 @@
 package uz.kruz.travelclub.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,13 +23,9 @@ public class TravelClub {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    @NotBlank
-    @Size(min = 3, message = "Name should be at least 3 characters")
     private String name;
 
-    @Column(nullable = false)
-    @NotBlank
-    @Size(min = 10, max = 255, message = "Intro must be between 10 and 255 characters")
+    @Column(nullable = false, length = 255)
     private String intro;
 
     @Column(nullable = false)
@@ -41,6 +35,7 @@ public class TravelClub {
     private SocialBoard board;
 
     @OneToMany(mappedBy = "club", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<ClubMembership> membershipList = new ArrayList<>();
 
     @PrePersist

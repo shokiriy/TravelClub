@@ -11,9 +11,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class TravelClubDto {
     //
     private Long id;

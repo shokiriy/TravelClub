@@ -19,19 +19,22 @@ public class ClubMembership {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+
+    @Column(nullable = false, length = 100)
     private String memberEmail;
+
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private RoleInClub role;
+
     @CreationTimestamp
     private LocalDateTime joinDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "club_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "club_id", nullable = false)
     private TravelClub club;
-
-    @ManyToOne
-    @JoinColumn(name = "member_id")
+ 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "member_id", nullable = false)
     private CommunityMember member;
 }

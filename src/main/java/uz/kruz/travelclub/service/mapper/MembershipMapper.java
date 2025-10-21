@@ -15,19 +15,5 @@ public interface MembershipMapper {
     @Mapping(target = "member", ignore = true)
     @Mapping(target = "club", ignore = true)
     ClubMembership toEntity(MembershipDto membershipDto);
-//    public MembershipDto toDto(ClubMembership membership) {
-//        if (membership == null) {
-//            return null;
-//        }
-//
-//        return MembershipDto.builder()
-//                .id(membership.getId())
-//                .clubId(membership.getClub().getId())
-//                .memberEmail(membership.getMemberEmail())
-//                .memberName(membership.getMember().getName())
-//                .role(membership.getRole())
-//                .joinDate(membership.getJoinDate())
-//                .memberId(membership.getMember() != null ? membership.getMember().getId() : null)
-//                .build();
-//    }
+
 }

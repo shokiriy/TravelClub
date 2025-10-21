@@ -1,17 +1,22 @@
 package uz.kruz.travelclub.dto;
 
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PostingDto {
     //
     private Long id;
 
+    @NotNull(message = "Board ID must not be null")
     private Long boardId;
 
     @NotBlank(message = "Title should not be blank!")

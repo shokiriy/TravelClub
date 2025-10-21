@@ -27,12 +27,9 @@ public class SocialBoard {
     private Long id;
 
     @Column(nullable = false, length = 100, unique = true)
-    @NotBlank(message = "Board name must not be blank")
-    @Size(min = 3, max = 100, message = "Board name should be between 3 and 100 characters")
     private String name;
 
-    @Column(length = 100)
-    @Email(message = "Admin email must be a valid email address")
+    @Column(nullable = false, length = 100)
     private String adminEmail;
 
     @CreationTimestamp

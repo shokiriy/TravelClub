@@ -11,12 +11,3 @@ public interface MemberMapper {
     MemberDto toDto(CommunityMember member);
 }
 
-//MemberDto.builder()
-//                .id(member.getId())
-//        .email(member.getEmail())
-//        .name(member.getName())
-//        .nickName(member.getNickName())
-//        .phoneNumber(member.getPhoneNumber())
-//        .birthDay(member.getBirthDay())
-//        .build();
-

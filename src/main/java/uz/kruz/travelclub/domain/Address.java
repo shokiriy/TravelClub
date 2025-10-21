@@ -16,18 +16,24 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+
+    @Column(nullable = false, length = 50)
     private String country;
-    @Column(nullable = false)
+
+    @Column(nullable = false, length = 100)
     private String streetAddress;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AddressType addressType;
-    @Column
+
+    @Column(length = 10)
     private String zipCode;
-    @Column
+
+    @Column(length = 100)
     private String zipAddress;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private CommunityMember member;
 }
