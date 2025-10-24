@@ -2,10 +2,12 @@ package uz.kruz.travelclub.service.logic;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import uz.kruz.travelclub.domain.CommunityMember;
 import uz.kruz.travelclub.domain.SocialBoard;
 import uz.kruz.travelclub.domain.TravelClub;
 import uz.kruz.travelclub.dto.BoardDto;
 import uz.kruz.travelclub.repository.BoardRepository;
+import uz.kruz.travelclub.repository.MemberRepository;
 import uz.kruz.travelclub.repository.MembershipRepository;
 import uz.kruz.travelclub.repository.ClubRepository;
 import uz.kruz.travelclub.service.BoardService;
@@ -21,6 +23,7 @@ public class BoardServiceLogic implements BoardService {
     private final BoardRepository boardRepository;
     private final ClubRepository clubRepository;
     private final MembershipRepository membershipRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public String register(BoardDto boardDto) {

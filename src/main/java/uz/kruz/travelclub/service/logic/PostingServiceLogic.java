@@ -72,6 +72,14 @@ public class PostingServiceLogic implements PostingService {
         Posting targetPosting = postingRepository.findById(postingDto.getId())
                 .orElseThrow(() -> new NoSuchPostingException("No such posting with id --> " + postingDto.getId()));
 
+        SocialBoard board = boardRepository.findById(postingDto.getBoardId())
+                .orElseThrow(() -> new NoSuchBoardException("No such board with id --> " + postingDto.getBoardId()));
+
+        TravelClub club = clubRepository.findById(board.getClub().getId())
+                .orElseThrow(() -> new NoSuchClubException("No such club for board Id --> " + postingDto.getBoardId()));
+
+        membershipServiceLogic.getMembershipBy(club.getId(), postingDto.getWriterEmail());
+
         if (postingDto.getTitle() != null && !postingDto.getTitle().isEmpty()) {
             targetPosting.setTitle(postingDto.getTitle());
         }

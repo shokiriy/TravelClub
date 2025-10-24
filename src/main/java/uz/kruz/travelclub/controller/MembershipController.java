@@ -36,7 +36,8 @@ public class MembershipController {
     @PutMapping("/{membershipId}")
     public ResponseEntity<String> modifyMembership(@PathVariable Long membershipId, @Valid @RequestBody MembershipDto membership) {
         //
-        membershipService.modifyMembership(membershipId, membership);
+        Long clubId = membership.getClubId();
+        membershipService.modifyMembership(clubId, membership);
         return ResponseEntity.status(HttpStatus.CREATED).body("Membership updated successfully");
     }
 

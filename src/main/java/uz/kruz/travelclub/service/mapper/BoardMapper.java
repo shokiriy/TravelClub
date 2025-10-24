@@ -9,6 +9,8 @@ import uz.kruz.travelclub.dto.BoardDto;
 @Mapper(componentModel = "spring")
 public interface BoardMapper {
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "name", source = "dto.name")
     @Mapping(target = "postings", ignore = true)
     SocialBoard toEntity(BoardDto dto, TravelClub travelClub);
 

@@ -1,11 +1,13 @@
 package uz.kruz.travelclub.util;
 
-import org.springframework.http.HttpStatus;
-import uz.kruz.travelclub.util.exceptionHandler.BaseException;
+import java.io.Serial;
 
-public class ClubDuplicationException extends BaseException {
+public class ClubDuplicationException extends RuntimeException {
     //
+    @Serial
+    private static final long serialVersionUID = -7196327736293090552L;
+
     public ClubDuplicationException(String message) {
-        super(message, HttpStatus.CONFLICT);
+        super(message);
     }
 }

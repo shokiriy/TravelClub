@@ -51,14 +51,16 @@ public class ClubServiceLogic implements ClubService {
     @Override
     public void modify(TravelClubDto clubDto) {
         //
-        clubRepository.findByName(clubDto.getName())
-                .ifPresent(club -> {
-                    throw new ClubDuplicationException("Club already exists with name --> " + clubDto.getName());
-                });
         TravelClub targetClub = clubRepository.findById(clubDto.getId())
                 .orElseThrow(() -> new NoSuchClubException("No such club with id --> " + clubDto.getId()));
 
         if (clubDto.getName() != null && !clubDto.getName().isEmpty()) {
+            if(!targetClub.getName().equals(clubDto.getName())){
+                boolean exists = clubRepository.existsByName(clubDto.getName());
+                if (exists) {
+                    throw new ClubDuplicationException("Club already exists with name --> " + clubDto.getName());
+                }
+            }
             targetClub.setName(clubDto.getName());
         }
         if (clubDto.getIntro() != null && !clubDto.getIntro().isEmpty()) {

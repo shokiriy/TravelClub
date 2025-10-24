@@ -16,7 +16,6 @@ public class PostingDto {
     //
     private Long id;
 
-    @NotNull(message = "Board ID must not be null")
     private Long boardId;
 
     @NotBlank(message = "Title should not be blank!")

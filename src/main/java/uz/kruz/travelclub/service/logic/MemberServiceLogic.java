@@ -34,6 +34,10 @@ public class MemberServiceLogic implements MemberService {
                 .ifPresent(member -> {
                     throw new MemberDuplicationException("Member already exists with email --> " + email);
                 });
+
+        if (memberRepository.existsByPhoneNumber(memberDto.getPhoneNumber())) {
+            throw new MemberDuplicationException("Member already exists with phone number --> " + memberDto.getPhoneNumber());
+        }
         memberRepository.save(CommunityMember.builder()
                         .name(memberDto.getName())
                         .nickName(memberDto.getNickName())

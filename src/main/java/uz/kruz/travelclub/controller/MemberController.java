@@ -1,5 +1,6 @@
 package uz.kruz.travelclub.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping
-    public ResponseEntity<String> create(@RequestBody MemberDto memberDto) {
+    public ResponseEntity<String> create(@Valid @RequestBody MemberDto memberDto) {
         //
         memberService.register(memberDto);
 
@@ -37,7 +38,7 @@ public class MemberController {
     }
 
     @PutMapping("/{memberId}")
-    ResponseEntity<String> update(@PathVariable Long memberId, @RequestBody MemberDto memberDto) {
+    ResponseEntity<String> update(@PathVariable Long memberId, @Valid @RequestBody MemberDto memberDto) {
         //
         memberDto.setId(memberId);
         memberService.modify(memberDto);

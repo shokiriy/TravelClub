@@ -34,9 +34,6 @@ public class MembershipServiceLogic implements MembershipService {
         //
         String memberEmail = membershipDto.getMemberEmail();
 
-        if (membershipDto.getRole() == RoleInClub.President) {
-            throw new MemberDuplicationException("Member already exists with role --> " + membershipDto.getRole().name());
-        }
         CommunityMember member = memberRepository.findByEmail(memberEmail)
                 .orElseThrow(() -> new NoSuchMemberException("No such member with email --> " + memberEmail));
 
@@ -46,6 +43,10 @@ public class MembershipServiceLogic implements MembershipService {
         for (ClubMembership membership : club.getMembershipList()) {
             if (memberEmail.equals(membership.getMemberEmail())) {
                 throw new MemberDuplicationException("Member already exists in this club --> " + memberEmail);
+            }
+
+            if (membershipDto.getRole() == RoleInClub.President) {
+                throw new MemberDuplicationException("Member already exists with role --> " + membershipDto.getRole().name());
             }
         }
 
